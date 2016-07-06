@@ -48,3 +48,14 @@ The state field takes the following constants.
 - USER_TIMEOUT (3)
 - END (4)
 
+# When to publish a game state
+
+`GameState.START`: when receiving a GameCommand.START
+
+`GameState.IN_PROGRESS`: when receiving a GameCommand.START and GameCommand.CONTINUE
+
+`GameState.PAUSED`: when receiving a GameCommand.PAUSE
+
+`GameState.TIMEOUT`: not receiving responses from the user
+
+`GameState.END`: after wrapping up the game
