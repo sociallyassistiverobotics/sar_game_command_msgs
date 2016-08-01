@@ -7,6 +7,9 @@ int8 game
 # which state
 int8 state 
 
+# user performance
+float32 performance
+
 # Games
 int8 STORYTELLING = 0
 # add new games here..

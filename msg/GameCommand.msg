@@ -7,6 +7,9 @@ int8 game
 # which command 
 int8 command 
 
+# which level to play
+int8 level
+
 # Games
 int8 STORYTELLING = 0
 # add new games here..
