@@ -13,17 +13,29 @@ includes the following fields and a set of constants for these fields:
     - TODO: more to add
 
 - `command`: Specifies the command for the receiving game. This command could
-  be any of the following:
-    - START (0): Upon receiving this command, the game starts to play.
-    - CONTINUE (1): This command is expected after a `PAUSE` command. Upon
-      receiving this command, the game resumes to play.
-    - PAUSE (2): This command puts the game on hold.
-    - END (3): Upon receiving this command, the game exits gracefully (e.g.,
-      continue to play until the next reasonable exit point). Do not exit the
-      game abruptly.
+  be any of the following (use cases described below):
+    - START (0)
+    - CONTINUE (1)
+    - PAUSE (2)
+    - END (3)
 
 - `level`: Include when sending a `GameCommand.START` message. Specifies the
   level the game should start at.
+
+### Expected game behavior
+
+Upone receiving each command, the game should...
+
+`GameCommand.START`: Start to play.
+
+`GameCommand.CONTINUE`: Resume play. This command is expected to be send after
+a `GameCommand.PAUSE` command.
+
+`GameCommand.PAUSE`: Pause game play until a `GameState.CONTINUE` message is
+received.
+
+`GameCommand.END`: Exits gameplay gracefully. That is, continue to play until
+the next reasonable exit point. Do not exit the game abruptly.
 
 ## GameState
 
@@ -47,13 +59,19 @@ includes the following fields and a set of constants for these fields:
 
 ### When to publish a GameState message
 
-`GameState.START`: when receiving a GameCommand.START
+A game should publish `GameCommand` messages at the following times:
 
-`GameState.IN_PROGRESS`: when receiving a GameCommand.START and
-GameCommand.CONTINUE
+`GameState.START`: When a `GameCommand.START` message has been received and the
+game is starting.
 
-`GameState.PAUSED`: when receiving a GameCommand.PAUSE
+`GameState.IN_PROGRESS`: When either a `GameCommand.START` or a
+`GameCommand.CONTINUE` message has been received, to indicate that the game is
+continuing now.
 
-`GameState.TIMEOUT`: not receiving responses from the user
+`GameState.PAUSED`: When a `GameCommand.PAUSE` message has been received and
+the game is paused.
 
-`GameState.END`: after wrapping up the game
+`GameState.TIMEOUT`: If a response was expected from the user, but no response
+was received within a reasonable amount of time.
+
+`GameState.END`: After wrapping up the game, when gameplay has ended.
