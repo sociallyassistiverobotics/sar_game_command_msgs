@@ -2,60 +2,50 @@
 
 A ROS package containing custom ROS messages for communication with SAR games.
 
-# GameCommand
+## GameCommand
 
 The GameCommand message is used to issue commands to SAR games. This message
-includes two fields, `game` and `command`, and a set of constants for these two
-fields.
+includes the following fields and a set of constants for these fields:
 
-The `game` field describes which game to take the commands.
-TODO: This field is still under experiment.
+- `game`: A constant listing which game should pay attention the command.
+  TODO: This field is still under experiment. The available games are:
+    - STORYTELLING (0)
+    - TODO: more to add
 
-The constants for this field are listed below.
+- `command`: Specifies the command for the receiving game. This command could
+  be any of the following:
+    - START (0): Upon receiving this command, the game starts to play.
+    - CONTINUE (1): This command is expected after a `PAUSE` command. Upon
+      receiving this command, the game resumes to play.
+    - PAUSE (2): This command puts the game on hold.
+    - END (3): Upon receiving this command, the game exits gracefully (e.g.,
+      continue to play until the next reasonable exit point). Do not exit the
+      game abruptly.
 
-- STORYTELLING (0)
+- `level`: Include when sending a `GameCommand.START` message. Specifies the
+  level the game should start at.
 
-TODO: more to add
-
-
-The `command` field specifies the command that the receiving game should do. A
-list of constants for this field is summarized below.
-
-- START (0)
-
-Upon receiving this command, the game starts to play.
-
-- CONTINUE (1)
-
-This command is expected after a `PAUSE` command. Upon receiving this command,
-the game resumes to play.
-
-- PAUSE (2)
-
-This command puts the game on hold.
-
-- END (3)
-
-Upon receiving this command, the game exits gracefully (e.g., continue to play
-until the next reasonable exit point). Do not exit the game abruptly.
-
-# GameState
+## GameState
 
 The GameState message sends the state of the publishing game. This message
-includes two fields, `game` and `state`, and a set of constants for these two
-fields.
+includes the following fields and a set of constants for these fields:
 
-The game field is the same as the one in GameCommand described above.
+- `game`: The same as the one in GameCommand described above.
 
-The state field takes the following constants.
+- `state`: Set to one of the following constants (use cases listed below):
+    - START (0)
+    - IN\_PROGRESS (1)
+    - PAUSED (2)
+    - USER\_TIMEOUT (3)
+    - END (4)
 
-- START (0)
-- IN\_PROGRESS (1)
-- PAUSED (2)
-- USER\_TIMEOUT (3)
-- END (4)
+- `performance`: Include when you send a `GameState.END` message. Should
+  contain the player's sucess rate for the game's primary target skill (e.g.,
+  ordering/sequencing, perspective taking, emotional understanding) as a
+  decimal percentage (i.e., the number of successes or correct answers divided
+  by the number of opportunities for success).
 
-# When to publish a game state
+### When to publish a GameState message
 
 `GameState.START`: when receiving a GameCommand.START
 
