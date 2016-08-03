@@ -18,6 +18,8 @@ includes the following fields and a set of constants for these fields:
     - CONTINUE (1)
     - PAUSE (2)
     - END (3)
+    - WAIT\_FOR\_RESPONSE (4)
+    - SKIP\_RESPONSE (5)
 
 - `level`: Include when sending a `GameCommand.START` message. Specifies the
   level the game should start at.
@@ -36,6 +38,14 @@ received.
 
 `GameCommand.END`: Exits gameplay gracefully. That is, continue to play until
 the next reasonable exit point. Do not exit the game abruptly.
+
+`GameCommand.WAIT_FOR_RESPONSE`: Wait for a player response before continuing.
+If the game receives a player response, it can continue as normal; if it does
+not, it should send a `GameState.USER_TIMEOUT` message to indicate that no
+response was received.
+
+`GameCommand.SKIP\_RESPONSE`: Resume play, optionally taking additional action
+to reflect the fact that an expected user response was not received.
 
 ## GameState
 
@@ -64,14 +74,16 @@ A game should publish `GameCommand` messages at the following times:
 `GameState.START`: When a `GameCommand.START` message has been received and the
 game is starting.
 
-`GameState.IN_PROGRESS`: When either a `GameCommand.START` or a
-`GameCommand.CONTINUE` message has been received, to indicate that the game is
-continuing now.
+`GameState.IN_PROGRESS`: When a `GameCommand.START`, `GameCommand.CONTINUE`, or
+`GameCommand.SKIP\_RESPONSE` message has been received, to indicate that the
+game is continuing play now.
 
 `GameState.PAUSED`: When a `GameCommand.PAUSE` message has been received and
 the game is paused.
 
-`GameState.TIMEOUT`: If a response was expected from the user, but no response
-was received within a reasonable amount of time.
+`GameState.USER_TIMEOUT`: If a response was expected from the user, but no
+response was received within a reasonable amount of time. The game should PAUSE
+after it sends this message to wait for instructions regarding whether it
+should wait for a response again or skip the response and move on.
 
 `GameState.END`: After wrapping up the game, when gameplay has ended.
