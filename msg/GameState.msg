@@ -5,7 +5,7 @@ Header header
 int8 game
 
 # which state
-int8 state 
+int8 state
 
 # user performance
 float32 performance
@@ -20,4 +20,3 @@ int8 IN_PROGRESS = 1
 int8 PAUSED = 2
 int8 USER_TIMEOUT = 3
 int8 END = 4
- 

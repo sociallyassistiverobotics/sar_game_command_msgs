@@ -1,61 +1,77 @@
-# sar_game_command_msgs
+# sar\_game\_command\_msgs
 
 A ROS package containing custom ROS messages for communication with SAR games.
 
-# GameCommand
+## GameCommand
 
-The GameCommand message is used to issue commands to SAR games. This message includes two fields, `game` and `command`, and a set of constants for these two fields.
+The GameCommand message is used to issue commands to SAR games. This message
+includes the following fields and a set of constants for these fields:
 
-The `game` field describes which game to take the commands.
-TODO: This field is still under experiment.
+- `game`: A constant listing which game should pay attention the command.
+  TODO: This field is still under experiment. The available games are:
+    - STORYTELLING (0)
+    - TODO: more to add
 
-The constants for this field are listed below.
+- `command`: Specifies the command for the receiving game. This command could
+  be any of the following (use cases described below):
+    - START (0)
+    - CONTINUE (1)
+    - PAUSE (2)
+    - END (3)
 
-- STORYTELLING (0)
+- `level`: Include when sending a `GameCommand.START` message. Specifies the
+  level the game should start at.
 
-TODO: more to add
+### Expected game behavior
 
+Upone receiving each command, the game should...
 
-The `command` field specifies the command that the receiving game should do. A list of constants for this field is summarized below.
+`GameCommand.START`: Start to play.
 
-- START (0)
+`GameCommand.CONTINUE`: Resume play. This command is expected to be send after
+a `GameCommand.PAUSE` command.
 
-Upon receiving this command, the game starts to play.
+`GameCommand.PAUSE`: Pause game play until a `GameState.CONTINUE` message is
+received.
 
-- CONTINUE (1)
+`GameCommand.END`: Exits gameplay gracefully. That is, continue to play until
+the next reasonable exit point. Do not exit the game abruptly.
 
-This command is expected after a `PAUSE` command. Upon receiving this command, the game resumes to play.
+## GameState
 
-- PAUSE (2)
+The GameState message sends the state of the publishing game. This message
+includes the following fields and a set of constants for these fields:
 
-This command puts the game on hold.
+- `game`: The same as the one in GameCommand described above.
 
-- END (3)
+- `state`: Set to one of the following constants (use cases listed below):
+    - START (0)
+    - IN\_PROGRESS (1)
+    - PAUSED (2)
+    - USER\_TIMEOUT (3)
+    - END (4)
 
-Upon receiving this command, the game exits gracefully (e.g., continue to play until the next reasonable exit point). Do not exit the game abruptly.
+- `performance`: Include when you send a `GameState.END` message. Should
+  contain the player's sucess rate for the game's primary target skill (e.g.,
+  ordering/sequencing, perspective taking, emotional understanding) as a
+  decimal percentage (i.e., the number of successes or correct answers divided
+  by the number of opportunities for success).
 
-# GameState
+### When to publish a GameState message
 
-The GameState message sends the state of the publishing game. This message includes two fields, `game` and `state`, and a set of constants for these two fields.
- 
-The game field is the same as the one in GameCommand described above.
+A game should publish `GameCommand` messages at the following times:
 
-The state field takes the following constants.
+`GameState.START`: When a `GameCommand.START` message has been received and the
+game is starting.
 
-- START (0)
-- IN_PROGRESS (1)
-- PAUSED (2)
-- USER_TIMEOUT (3)
-- END (4)
+`GameState.IN_PROGRESS`: When either a `GameCommand.START` or a
+`GameCommand.CONTINUE` message has been received, to indicate that the game is
+continuing now.
 
-# When to publish a game state
+`GameState.PAUSED`: When a `GameCommand.PAUSE` message has been received and
+the game is paused.
 
-`GameState.START`: when receiving a GameCommand.START
+`GameState.TIMEOUT`: If a response was expected from the user, but no response
+was received within a reasonable amount of time.
 
-`GameState.IN_PROGRESS`: when receiving a GameCommand.START and GameCommand.CONTINUE
-
-`GameState.PAUSED`: when receiving a GameCommand.PAUSE
-
-`GameState.TIMEOUT`: not receiving responses from the user
-
-`GameState.END`: after wrapping up the game
+`GameState.END`: After wrapping up the game, when gameplay has ended.

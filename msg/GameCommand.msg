@@ -1,11 +1,11 @@
-# Message for requesting game actions 
+# Message for requesting game actions
 Header header
 
 # which game
 int8 game
 
-# which command 
-int8 command 
+# which command
+int8 command
 
 # which level to play
 int8 level
