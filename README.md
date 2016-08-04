@@ -44,15 +44,16 @@ If the game receives a player response, it can continue as normal; if it does
 not, it should send a `GameState.USER_TIMEOUT` message to indicate that no
 response was received.
 
-`GameCommand.SKIP\_RESPONSE`: Resume play, optionally taking additional action
+`GameCommand.SKIP_RESPONSE`: Resume play, optionally taking additional action
 to reflect the fact that an expected user response was not received.
 
 ## GameState
 
-The GameState message sends the state of the publishing game. This message
-includes the following fields and a set of constants for these fields:
+The GameState messages are sent by games to indicate what's happening in the
+game. This message includes the following fields and a set of constants for
+these fields:
 
-- `game`: The same as the one in GameCommand described above.
+- `game`: The same as for `GameCommand`, described above.
 
 - `state`: Set to one of the following constants (use cases listed below):
     - START (0)
