@@ -12,6 +12,7 @@ float32 performance
 
 # Games
 int8 STORYTELLING = 0
+int8 ROCKET_BARRIER = 1
 # add new games here..
 
 # Commands
