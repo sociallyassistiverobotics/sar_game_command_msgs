@@ -10,6 +10,7 @@ includes the following fields and a set of constants for these fields:
 - `game`: A constant listing which game should pay attention the command.
   TODO: This field is still under experiment. The available games are:
     - STORYTELLING (0)
+    - ROCKET_BARRIER (1)
     - TODO: more to add
 
 - `command`: Specifies the command for the receiving game. This command could
