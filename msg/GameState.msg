@@ -8,7 +8,7 @@ int8 game
 int8 state
 
 # user performance
-float32 performance
+string performance
 
 # Games
 int8 STORYTELLING = 0
