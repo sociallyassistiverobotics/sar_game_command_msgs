@@ -67,39 +67,73 @@ these fields:
   contain the player's sucess rate(s) for the game's primary target skill (e.g.,
   ordering/sequencing, perspective taking, emotional understanding) as a
   decimal percentage (i.e., the number of successes or correct answers divided
-  by the number of opportunities for success). The perfomance field should be 
+  by the number of opportunities for success). The perfomance field should be
   a JSON string with names of performance metrics mapped to their associated
-  values. The following is an example of the performance field for the rocket 
-  barrier game: 
-
-> {  
->    "child-explainer-location-accuracy" : 0.8,
->    "child-explainer-piece-choice-accuracy" : 0.6
-> }
+  values.
 
 ### Performance metrics
 
-The possible performance metrics that each game can report are listed in this 
-section. 
+#### Metrics reported by each game
 
+The possible performance metrics that each game can report are as follows:
 
-- Rocket-Barrier Game
+- Rocket-Barrier Game:
     - `child-explainer-location-accuracy` : In the version of the game where
       the child explains the rocket for the parent to build, the proportion of
       pieces of the parent's constructed rocket that are correct in both piece
-      type and position. 
-    - `child-explainer-piece-choice-accuracy` : In the version of the game 
-      where the child explains the rocket for the parent to build, the 
+      type and position.
+    - `child-explainer-piece-choice-accuracy` : In the version of the game
+      where the child explains the rocket for the parent to build, the
       proportion of pieces on the rocket that are correct in piece type, but
-      not necessarily piece position. 
+      not necessarily piece position.
     - `child-builder-location-accuracy` : In the version of the game where
       the parent explains the rocket for the child to build, the proportion of
       pieces of the child's constructed rocket that are correct in both piece
-      type and position. 
-    - `child-builder-piece-choice-accuracy` : In the version of the game 
-      where the parent explains the rocket for the child to build, the 
-      proportion of pieces on the child's constructed rocket that are correct 
-      in piece type, but not necessarily piece position. 
+      type and position.
+    - `child-builder-piece-choice-accuracy` : In the version of the game
+      where the parent explains the rocket for the child to build, the
+      proportion of pieces on the child's constructed rocket that are correct
+      in piece type, but not necessarily piece position.
+
+- Storytelling Game:
+    - `child-emotion-question-accuracy` : The percentage of emotion questions
+      that the child answered correctly this session. These multiple-choice
+      questions ask the child to identify which emotions were felt by
+      characters in the stories.
+    - `child-tom-question-accuracy' : The percentage of theory of mind (ToM)
+      questions that the child answered correctly this session. These
+      multiple-choice questions ask the child to identify what emotion a
+      character in a story might feel next.
+    - `child-order-question-accuracy' : The percentage of order questions that
+      the child answered correctly this session. These multiple-choice
+      questions ask the child to identify in which scene of the story different
+      events happened, such as what happened first or when a particular
+      character felt sad.
+
+#### Examples
+
+The following is an example of the performance field for the Rocket-Barrier
+game:
+
+> {  
+>    "child-explainer-location-accuracy" : 0.8,  
+>    "child-explainer-piece-choice-accuracy" : 0.6  
+> }  
+
+The following is an example of the performance field for the Storytelling game.
+Note that depending on the child's level in the Storytelling game, not all
+types of questions will be asked. The performance metric for a question type
+will only be reported if that type of question was asked that session. Thus,
+sometimes only the `child-emotion-question-accuracy` will be reported,
+sometimes both the `child-emotion-question-accuracy` and
+`child-order-question-accuracy` will be reported, and sometimes all three will
+be reported.
+
+> {  
+>   "child-emotion-question-accuracy" : 0.7,  
+>   "child-tom-question-accuracy" : 0.0,  
+>   "child-order-question-accuracy" : 0.5  
+> }  
 
 
 ### When to publish a GameState message
