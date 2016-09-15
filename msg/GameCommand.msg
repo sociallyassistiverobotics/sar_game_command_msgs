@@ -13,6 +13,8 @@ int8 level
 # Games
 int8 STORYTELLING = 0
 int8 ROCKET_BARRIER = 1
+int8 HOUSE_PERSPECTIVE_TAKING = 2
+int8 TRAIN_SEQUENCING = 3
 # add new games here..
 
 # Commands
