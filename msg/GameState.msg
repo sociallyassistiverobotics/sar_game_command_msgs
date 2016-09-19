@@ -13,6 +13,11 @@ string performance
 # Games
 int8 STORYTELLING = 0
 int8 ROCKET_BARRIER = 1
+int8 GALACTIC_TRAVELER = 2
+int8 SPACESHIP_TIDYUP = 3
+int8 ALIEN_CODES = 4
+int8 HOUSE_PERSPECTIVE_TAKING = 5
+int8 TRAIN_SEQUENCING = 6
 # add new games here..
 
 # Commands
