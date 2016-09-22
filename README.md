@@ -105,11 +105,11 @@ The possible performance metrics that each game can report are as follows:
       that the child answered correctly this session. These multiple-choice
       questions ask the child to identify which emotions were felt by
       characters in the stories.
-    - `child-tom-question-accuracy' : The percentage of theory of mind (ToM)
+    - `child-tom-question-accuracy` : The percentage of theory of mind (ToM)
       questions that the child answered correctly this session. These
       multiple-choice questions ask the child to identify what emotion a
       character in a story might feel next.
-    - `child-order-question-accuracy' : The percentage of order questions that
+    - `child-order-question-accuracy` : The percentage of order questions that
       the child answered correctly this session. These multiple-choice
       questions ask the child to identify in which scene of the story different
       events happened, such as what happened first or when a particular
@@ -139,6 +139,13 @@ be reported.
 >   "child-tom-question-accuracy" : 0.0,  
 >   "child-order-question-accuracy" : 0.5  
 > }  
+
+The following empty json string should be sent in the performance field if the game 
+ends and there is no performance information to report (rather than sending nothing 
+in this field).
+
+> {
+> }
 
 
 ### When to publish a GameState message
