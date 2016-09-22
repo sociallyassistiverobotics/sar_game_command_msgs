@@ -11,7 +11,11 @@ includes the following fields and a set of constants for these fields:
   TODO: This field is still under experiment. The available games are:
     - STORYTELLING (0)
     - ROCKET_BARRIER (1)
-    - TODO: more to add
+    - GALACTIC_TRAVELER (2)
+    - SPACESHIP_TIDYUP (3)
+    - ALIEN_CODES (4)
+    - HOUSE_PERSPECTIVE_TAKING (5)
+    - TRAIN_SEQUENCING (6)
 
 - `command`: Specifies the command for the receiving game. This command could
   be any of the following (use cases described below):
@@ -62,6 +66,7 @@ these fields:
     - PAUSED (2)
     - USER\_TIMEOUT (3)
     - END (4)
+    - READY (5)
 
 - `performance`: Include when you send a `GameState.END` message. Should
   contain the player's sucess rate(s) for the game's primary target skill (e.g.,
@@ -138,7 +143,7 @@ be reported.
 
 ### When to publish a GameState message
 
-A game should publish `GameCommand` messages at the following times:
+A game should publish `GameState` messages at the following times:
 
 `GameState.START`: When a `GameCommand.START` message has been received and the
 game is starting.
@@ -156,3 +161,6 @@ after it sends this message to wait for instructions regarding whether it
 should wait for a response again or skip the response and move on.
 
 `GameState.END`: After wrapping up the game, when gameplay has ended.
+
+`GameState.READY`: When a game is up and running and is ready to receive a 
+`GameCommand.START` message (when the game is ready to be started and played).   
