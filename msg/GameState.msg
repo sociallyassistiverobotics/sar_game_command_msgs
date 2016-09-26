@@ -26,3 +26,4 @@ int8 IN_PROGRESS = 1
 int8 PAUSED = 2
 int8 USER_TIMEOUT = 3
 int8 END = 4
+int8 READY = 5
