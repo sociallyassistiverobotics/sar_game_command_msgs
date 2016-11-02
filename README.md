@@ -115,6 +115,24 @@ The possible performance metrics that each game can report are as follows:
       events happened, such as what happened first or when a particular
       character felt sad.
 
+- Galactic Traveler:
+    - `attempts-mean` : The average number of attempts across the 5 activities.
+    - `attempts-variance` : The variance on the number of attempts.
+    - `time-spent-mean` : The average number of seconds the child spent on the 5 activities.
+    - `time-spent-variance` : The variance on the time spent on an activity.
+    - `activity-with-most-attempts` : The activity (1-5) that the child had the most attempts.
+    - `activity-child-spent-longest` : The activity (1-5) that the child spent the longest on.
+    - `child-success-percentage` : The percentage of games the child got correct without any failed attempts.`
+
+- Spaceship Tidyup:
+    - `attempts-mean` : The average number of attempts across the 5 activities.
+    - `attempts-variance` : The variance on the number of attempts.
+    - `time-spent-mean` : The average number of seconds the child spent on the 5 activities.
+    - `time-spent-variance` : The variance on the time spent on an activity.
+    - `activity-with-most-attempts` : The activity (1-5) that the child had the most attempts.
+    - `activity-child-spent-longest` : The activity (1-5) that the child spent the longest on.
+    - `child-success-percentage` : The percentage of games the child got correct without any failed attempts.`
+
 #### Examples
 
 The following is an example of the performance field for the Rocket-Barrier
