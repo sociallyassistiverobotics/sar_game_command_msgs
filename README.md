@@ -169,15 +169,15 @@ be reported.
 For Galactic Traveler and Spaceship Tidyup, all performance metrics will be
 reported, as in the following example:
 
-> {
->   "attempts_mean": 1.6,
->   "attempts_variance": 0.64,
->   "time_spent_mean": 5.125324999999999,
->   "time_spent_variance": 7.4272715651532,
->   "activity_with_most-attempts": 1,
->   "activity_child_spent_longest": 1,
->   "child_success_percentage": 0.6
-> }
+> {  
+>   "attempts_mean" : 1.6,  
+>   "attempts_variance" : 0.64,  
+>   "time_spent_mean" : 5.125324999999999,  
+>   "time_spent_variance" : 7.4272715651532,  
+>   "activity_with_most_attempts" : 1,  
+>   "activity_child_spent_longest" : 1,  
+>   "child_success_percentage" : 0.6  
+> }  
 
 The following empty json string should be sent in the performance field if the game 
 ends and there is no performance information to report (rather than sending nothing 
