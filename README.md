@@ -116,22 +116,30 @@ The possible performance metrics that each game can report are as follows:
       character felt sad.
 
 - Galactic Traveler:
-    - `attempts-mean` : The average number of attempts across the 5 activities.
-    - `attempts-variance` : The variance on the number of attempts.
-    - `time-spent-mean` : The average number of seconds the child spent on the 5 activities.
-    - `time-spent-variance` : The variance on the time spent on an activity.
-    - `activity-with-most-attempts` : The activity (1-5) that the child had the most attempts.
-    - `activity-child-spent-longest` : The activity (1-5) that the child spent the longest on.
-    - `child-success-percentage` : The percentage of games the child got correct without any failed attempts.`
+    - `attempts_mean` : The average number of attempts across the 5 activities.
+    - `attempts_variance` : The variance on the number of attempts.
+    - `time_spent_mean` : The average number of seconds the child spent on the
+      5 activities.
+    - `time_spent_variance` : The variance on the time spent on an activity.
+    - `activity_with_most_attempts` : The activity (1-5) that the child had the
+      most attempts.
+    - `activity_child_spent_longest` : The activity (1-5) that the child spent
+      the longest on.
+    - `child_success_percentage` : The percentage of activities the child
+      answered correctly without any failed attempts.
 
 - Spaceship Tidyup:
-    - `attempts-mean` : The average number of attempts across the 5 activities.
-    - `attempts-variance` : The variance on the number of attempts.
-    - `time-spent-mean` : The average number of seconds the child spent on the 5 activities.
-    - `time-spent-variance` : The variance on the time spent on an activity.
-    - `activity-with-most-attempts` : The activity (1-5) that the child had the most attempts.
-    - `activity-child-spent-longest` : The activity (1-5) that the child spent the longest on.
-    - `child-success-percentage` : The percentage of games the child got correct without any failed attempts.`
+    - `attempts_mean` : The average number of attempts across the 5 activities.
+    - `attempts_variance` : The variance on the number of attempts.
+    - `time_spent_mean` : The average number of seconds the child spent on the
+      5 activities.
+    - `time_spent_variance` : The variance on the time spent on an activity.
+    - `activity_with_most_attempts` : The activity (1-5) that the child had the
+      most attempts.
+    - `activity_child_spent_longest` : The activity (1-5) that the child spent
+      the longest on.
+    - `child_success_percentage` : The percentage of activities the child
+      answered correctly without any failed attempts.
 
 #### Examples
 
@@ -157,6 +165,19 @@ be reported.
 >   "child-tom-question-accuracy" : 0.0,  
 >   "child-order-question-accuracy" : 0.5  
 > }  
+
+For Galactic Traveler and Spaceship Tidyup, all performance metrics will be
+reported, as in the following example:
+
+> {
+>   "attempts_mean": 1.6,
+>   "attempts_variance": 0.64,
+>   "time_spent_mean": 5.125324999999999,
+>   "time_spent_variance": 7.4272715651532,
+>   "activity_with_most-attempts": 1,
+>   "activity_child_spent_longest": 1,
+>   "child_success_percentage": 0.6
+> }
 
 The following empty json string should be sent in the performance field if the game 
 ends and there is no performance information to report (rather than sending nothing 
