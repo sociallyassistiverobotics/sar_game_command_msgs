@@ -67,6 +67,7 @@ these fields:
     - USER\_TIMEOUT (3)
     - END (4)
     - READY (5)
+    - TUTORIAL (6)
 
 - `performance`: Include when you send a `GameState.END` message. Should
   contain the player's sucess rate(s) for the game's primary target skill (e.g.,
