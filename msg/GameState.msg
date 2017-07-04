@@ -20,7 +20,7 @@ int8 HOUSE_PERSPECTIVE_TAKING = 5
 int8 TRAIN_SEQUENCING = 6
 # add new games here..
 
-# Commands
+# States
 int8 START = 0
 int8 IN_PROGRESS = 1
 int8 PAUSED = 2
