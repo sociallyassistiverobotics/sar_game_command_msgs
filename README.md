@@ -25,6 +25,7 @@ includes the following fields and a set of constants for these fields:
     - END (3)
     - WAIT\_FOR\_RESPONSE (4)
     - SKIP\_RESPONSE (5)
+    - PLAY\_TUTORIAL (6)
 
 - `level`: Include when sending a `GameCommand.START` message. Specifies the
   level the game should start at.
